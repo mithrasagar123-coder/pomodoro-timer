@@ -14,15 +14,15 @@
 
 ## Contents
 
-1. [2026-10-31: # October 31st: Getting on Track](#2026-10-31-october-31st-getting-on-track)
+1. [2026-10-31: # October 31st (1): Getting on Track](#2026-10-31-october-31st-1-getting-on-track)
 
 ## Design
 
-### 2026-10-31: # October 31st: Getting on Track
+### 2026-10-31: # October 31st (1): Getting on Track
 
 **1h**
 
-# October 31st: Getting on Track
+# October 31st (1): Getting on Track
 
 I am brand new to everything in hardware, Half Life is the first time I've ever done these kinds of things. Because of this, the new starter project guide style confused me, and left me very lost without a structured tutorial to follow. I knew what I wanted to make, just no idea how to start. I added 2 parts in my schematic, ones I remember from previous projects and just stared at them, no idea what do next.
 
