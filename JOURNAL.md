@@ -16,7 +16,7 @@
 
 1. [2026-10-31: # October 31st (1): Getting on Track](#2026-10-31-october-31st-1-getting-on-track)
 2. [2026-10-31: # October 31st (2): Drawing the Schematic](#2026-10-31-october-31st-2-drawing-the-schematic)
-3. [2026-11-01: # October 31st (3):](#2026-11-01-october-31st-3)
+3. [2026-11-01: # October 31st (3): Footsprints & Layouts](#2026-11-01-october-31st-3-footsprints-layouts)
 
 ## Design
 
@@ -69,11 +69,11 @@ Moving on to PCB routing next.
 
 Tl;dr: Finished drawing the schematic. It's all good.
 
-### 2026-11-01: # October 31st (3):
+### 2026-11-01: # October 31st (3): Footsprints & Layouts
 
 **1h**
 
-# October 31st (3):
+# October 31st (3): Footsprints & Layouts
 
 Just came back from trick or treating. Happy Halloween, dear reviewers.
 
