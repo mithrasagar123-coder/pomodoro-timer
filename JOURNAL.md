@@ -77,7 +77,7 @@ Tl;dr: Finished drawing the schematic. It's all good.
 
 Just came back from trick or treating. Happy Halloween, dear reviewers.
 
-I assigned footprints to all my parts... which actually took about half an hour because I couldn't find the footprint for Kailh Choc Low-Profile Switches 😭. It was with the Hackclub footprints, which I didn't realize until I checked the footprints of my past projects. I was looking for it in the Button_Switch_Keyboard area.
+I assigned footprints to all my parts... which actually took about half an hour because I couldn't find the footprint for Kailh Choc Low-Profile Switches 😭. It was with the Hackclub footprints, which I didn't realize until I checked the footprints of my past projects. I was looking for it in the Button Switch Keyboard area.
 
  I also debated over whether I want a removable or permanent header for while, to which footprints to add in. At first, I went the removable one, but after seeing it in PCB editor, I realized I didn't really know how to use it properly. So in the end, I decided to use neither pin socket nor pin header and use **Imported Parts:Display_128x64_096_I2C**, the ones from the Starbie project, because I was familiar with it (and it had it's own module mounting holes).
 
