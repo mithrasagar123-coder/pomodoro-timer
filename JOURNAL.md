@@ -17,7 +17,7 @@
 1. [2026-10-31: # October 31st (1): Getting on Track](#2026-10-31-october-31st-1-getting-on-track)
 2. [2026-10-31: # October 31st (2): Drawing the Schematic](#2026-10-31-october-31st-2-drawing-the-schematic)
 3. [2026-11-01: # October 31st (3): Footprint Hunt](#2026-11-01-october-31st-3-footprint-hunt)
-4. [2026-11-01: # November 1st: Rearranging & Routing](#2026-11-01-november-1st-rearranging-routing)
+4. [2026-11-01: # November 1st (1): Rearranging & Routing](#2026-11-01-november-1st-1-rearranging-routing)
 
 ## Design
 
@@ -92,11 +92,11 @@ May move it around once I wire it, which will be tomorrow.
 
 Tl;dr: Assigned footprints and uploaded parts to PCB editor.
 
-### 2026-11-01: # November 1st: Rearranging & Routing
+### 2026-11-01: # November 1st (1): Rearranging & Routing
 
 **3h**
 
-# November 1st: Rearranging & Routing
+# November 1st (1): Rearranging & Routing
 
 start: 10:30
 
