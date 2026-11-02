@@ -6,11 +6,11 @@
 > [!NOTE]
 > This devlog is mirrored from [Half Life](https://halflife.hackclub.com) ([open the project](https://halflife.hackclub.com/projects/ub3a9zd45fqrosks5me8hjhl)). Editing it here will not change the platform's copy, and the next sync overwrites this file.
 
-> Classic study timer using the pomodoro technique, built with an OLED screen and 4 buttons to cycle between focus breaks and reset the timer.
+> Classic study timer using the Pomodoro technique, built with an OLED screen and 4 buttons to cycle between focus and breaks.
 
 | Week | Tier | Hours logged | Entries |
 | --- | --- | --- | --- |
-| Week 4 | Tier 1 | 9.75h | 5 |
+| Week 4 | Tier 1 | 11h | 5 |
 
 ## Contents
 
@@ -18,7 +18,7 @@
 2. [2026-10-31: # October 31st (2): Drawing the Schematic](#2026-10-31-october-31st-2-drawing-the-schematic)
 3. [2026-11-01: # October 31st (3): Footprint Hunt](#2026-11-01-october-31st-3-footprint-hunt)
 4. [2026-11-01: # November 1st (1): Rearranging & Routing](#2026-11-01-november-1st-1-rearranging-routing)
-5. [2026-11-01: # November 1st (2):](#2026-11-01-november-1st-2)
+5. [2026-11-01: # November 1st (2): Coding, mostly](#2026-11-01-november-1st-2-coding-mostly)
 
 ## Design
 
@@ -148,23 +148,112 @@ Final board :
 
 Tl;dr: Lots of routing. Finished board design.
 
-### 2026-11-01: # November 1st (2):
+### 2026-11-01: # November 1st (2): Coding, mostly
 
-**3h**
+**4.25h**
 
-# November 1st (2):
+# November 1st (2): Coding, mostly
 
-start: 4:30
-
+## First of all...
 Before I moved on to coding and what-not I realized that I didn't any artwork on the backside.
 So I fixed that!
 ![Screenshot 2026-11-01 at 4.37.35 PM](https://halflife.hackclub-assets.com/sessions/UVNqyKra78p0fx3PyRp3K6pDIBVtreMb/3fe21c2ea3f107b7d9d5c5c94a7f0ad28c6baef4fd32b9173b28bfcdd299e94f.png)
 
-While I sat down to begincoding, I realized I made a MAJOR mistake. In the schematic I actually used XIAO-ESP32-**S**3 instead of XIAO-ESP32-**C**3... So I had to redo part of my schematic and fix the wiring accordingly. It was a little agonizing, but I went back and updated both my schematic, routing, and 3D models:
+While I sat down to begin coding, I realized while defining the pins in the code I actually made a MAJOR mistake. In the schematic I actually used XIAO-ESP32-**S**3 instead of XIAO-ESP32-**C**3... So I had to redo part of my schematic and fix the wiring accordingly. It was a little agonizing, but I went back and updated both my schematic, routing, and 3D models:
 ![Screenshot 2026-11-01 at 7.38.00 PM](https://halflife.hackclub-assets.com/sessions/UVNqyKra78p0fx3PyRp3K6pDIBVtreMb/1e62ada3705a6e933ba7bff978a9f09709588062f7bc193f6be6aa7ab0351399.png)
 ![Screenshot 2026-11-01 at 7.38.43 PM](https://halflife.hackclub-assets.com/sessions/UVNqyKra78p0fx3PyRp3K6pDIBVtreMb/d91f68f120800cb0504d12a7b314437fd5f501d1f9c1bf346748cebb3aa7cada.png)
 ![Screenshot 2026-11-01 at 7.41.28 PM](https://halflife.hackclub-assets.com/sessions/UVNqyKra78p0fx3PyRp3K6pDIBVtreMb/015572aaca22759e2f0f46a8a0ce1ff52dcc6a3b41db9afa6cab06d134590628.png)
 
-Now that there's one near-disastrous hurdle out of the way, it was time to code!
+## Code
+Now that there's one near-disastrous hurdle out of the way, it was time to actually code!
 
-Am the the freshest of all beginners when it comes to coding, so for this I had to ask for a lot guidance from my dad (and a little from AI).
+I am the the freshest of all beginners when it comes to coding, so for this part I had to ask for a lot guidance from my dad (and a little from AI).
+
+What I wanted it to do was have one button start focus mode, another start short break, another start long break, and the last reset the timer. How our code does is first define what pins our buttons connect to in the ESP32-C3 and how long each timer duration is:
+
+```
+// Hardware Pin Definitions (GPIOs)
+const int btnOne   = 2;   // KiCad Pin D0  -> Focus Mode
+const int btnTwo   = 10;  // KiCad Pin D10 -> Short Break Mode
+const int btnThree = 3;   // KiCad Pin D1  -> Long Break Mode
+const int btnFour  = 20;  // KiCad Pin D7  -> Reset
+
+// Timer Duration Targets (Converted to Seconds)
+const unsigned long FOCUS_DURATION = 25 * 60;
+const unsigned long SHORT_DURATION = 5 * 60;
+const unsigned long LONG_DURATION  = 15 * 60;
+```
+
+It tracks the time by comparing the current time and last time and counting in milliseconds:
+
+```
+// State Machine Variables
+enum TimerState { IDLE, FOCUS, SHORT_BREAK, LONG_BREAK };
+TimerState currentState = IDLE;
+
+unsigned long timeRemaining = 0; // Total seconds left in active cycle
+unsigned long lastTickTime = 0;  // Tracks millisecond ticks for 1-second counting
+```
+
+This part assigns the buttons to their functions:
+```
+ // BUTTON ONE: Start / Continue Focus Mode
+  if (digitalRead(btnOne) == LOW) {
+    currentState = FOCUS;
+    timeRemaining = FOCUS_DURATION;
+    lastTickTime = millis();
+    delay(250); // Debounce
+  }
+  // BUTTON TWO: Start Short Break
+  else if (digitalRead(btnTwo) == LOW) {
+    currentState = SHORT_BREAK;
+    timeRemaining = SHORT_DURATION;
+    lastTickTime = millis();
+    delay(250); // Debounce
+  }
+  // BUTTON THREE: Start Long Break
+  else if (digitalRead(btnThree) == LOW) {
+    currentState = LONG_BREAK;
+    timeRemaining = LONG_DURATION;
+    lastTickTime = millis();
+    delay(250); // Debounce
+  }
+  // BUTTON FOUR: System Reset
+  else if (digitalRead(btnFour) == LOW) {
+    currentState = IDLE;
+    timeRemaining = 0;
+    delay(250); // Debounce
+```
+
+And this deals with the transitions between different modes:
+
+```
+// Handle the automatic transition logic when a timer hits zero
+      if (timeRemaining == 0) {
+        if (currentState == FOCUS) {
+          // Transition rule: Focus -> Short Break
+          currentState = SHORT_BREAK;
+          timeRemaining = SHORT_DURATION;
+        }
+        else if (currentState == SHORT_BREAK) {
+          // Transition rule: Short Break -> Focus Mode
+          currentState = FOCUS;
+          timeRemaining = FOCUS_DURATION;
+        }
+        else if (currentState == LONG_BREAK) {
+          // Transition rule: Long break stops entirely and returns to standard state
+          currentState = IDLE;
+        }
+      }
+```
+There's still more to the code, of course, but I'm not going to explain each individual line.
+
+## Keycaps
+
+One last detail I want to add is CAD keycaps for all the buttons! I already have some custom ones created for weeks 1 and 3, so I copied them and deleted the design (I'll draw in labels myself after they print, just to keep the costs a tiny bit lower).
+
+![Screenshot 2026-11-01 at 8.40.49 PM](https://halflife.hackclub-assets.com/sessions/UVNqyKra78p0fx3PyRp3K6pDIBVtreMb/8a38a7d330e02ffe1a4d2393a43933ec9dfba8576cbb8f5ca7ab2ecc4ca19973.png)
+
+Finally done with everything in my design! Next up is BOM, then submit!
+
+  Tl;dr: Switched microcontrollers last minute, created the code, and prepared a keycap for my buttons.
