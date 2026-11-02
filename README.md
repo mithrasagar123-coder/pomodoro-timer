@@ -37,6 +37,8 @@ I designed this for my Week 4 project of halflife, a 10-week program where you c
 | Button 3 | Pauses focus timer and starts long break for 15 minutes.  |
 | Button 4 | Resets all timers. |
 
+View the full thing here at [sketch_pomodorotimer.ino](https://github.com/mithrasagar123-coder/pomodoro-timer/blob/main/sketch_pomodorotimer.ino)
+
 ## Keycaps
 
 To be printed and placed on the buttons:
