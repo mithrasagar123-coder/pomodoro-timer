@@ -146,6 +146,8 @@ Final board :
 
 ![Screenshot 2026-11-01 at 3.55.30 PM](https://halflife.hackclub-assets.com/sessions/UVNqyKra78p0fx3PyRp3K6pDIBVtreMb/dc0e1d455098e6b0cfc0d95715446f6abc4beb03aa61c874f261e8c326757350.png)
 
+Tl;dr: Lots of routing. Finished board design.
+
 ### 2026-11-01: # November 1st (2):
 
 **3h**
