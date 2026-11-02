@@ -23,3 +23,14 @@ I designed this for my Week 4 project of halflife, a 10-week program where you c
 *(The character shown twice is Kanade Yoisaki from Project Sekai. The first image depicts her with her phone, representing break time, and the second image shows her intensely reading a book, representing focus time.)* 
 
 [![View PCB on KiCanvas](https://hack.club/pcb-badge)](https://kicanvas.org/?repo=https://github.com/<mithrasagar123>/<pomodoro-timer>/tree/main/pcb)
+
+## Code
+
+| Control | What it does |
+| --- | --- |
+| Button 1 | Starts focus mode for 25 minutes. Once timer goes to 0, short break automatically starts. |
+| Button 2 | Pauses focus timer and starts short break for 5 minutes. Focus mode will continue when short break is over. |
+| Button 3 | Pauses focus timer and starts long break for 15 minutes.  |
+| Button 4 | Resets all timers. |
+
+## BOM
