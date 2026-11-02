@@ -10,7 +10,7 @@
 
 | Week | Tier | Hours logged | Entries |
 | --- | --- | --- | --- |
-| Week 4 | Tier 1 | 6.5h | 4 |
+| Week 4 | Tier 1 | 6.75h | 4 |
 
 ## Contents
 
@@ -94,11 +94,9 @@ Tl;dr: Assigned footprints and uploaded parts to PCB editor.
 
 ### 2026-11-01: # November 1st (1): Rearranging & Routing
 
-**3h**
+**3.25h**
 
 # November 1st (1): Rearranging & Routing
-
-start: 10:30
 
 ## Layout
 
